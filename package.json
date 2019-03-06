@@ -7,12 +7,12 @@
     "node": ">= 6.0"
   },
   "scripts": {
-    "start": "DEBUG=wechat* node ./demo/index.js",
-    "dev": "DEBUG=wechat* nodemon -w ./lib -w ./demo ./demo/index.js",
+    "start": "cross-env DEBUG=wechat* node ./demo/index.js",
+    "dev": "cross-env DEBUG=wechat* nodemon -w ./lib -w ./demo ./demo/index.js",
     "test": "_mocha --exit test/**/*.js",
     "coverage": "istanbul cover _mocha --report lcov -- -R spec --exit test/**/*.js",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
-    "prod": "NODE_ENV=production webpack --progress --mode production",
+    "prod": "cross-env NODE_ENV=production webpack --progress --mode production",
     "build": "webpack --progress --mode development && npm run prod",
     "watch": "webpack --progress --mode development --watch",
     "prepublish": "npm run build"
@@ -49,10 +49,13 @@
   },
   "homepage": "https://github.com/JasonBoy/wechat-jssdk#readme",
   "dependencies": {
+    "cross-env": "^5.2.0",
     "date-fns": "1.29.0",
     "debug": "4.1.0",
+    "install": "^0.12.2",
     "lodash.isempty": "4.4.0",
     "mongoose": "5.3.15",
+    "npm": "^6.8.0",
     "request": "2.88.0",
     "request-promise": "4.2.2",
     "xml2js": "0.4.19"
